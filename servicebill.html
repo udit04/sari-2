@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Service Bill | SAR INVOICE</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/fontawesome-4.3.0.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/switch.css">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery-ui.css">
+
+	</head>
+	<body id="mainBody">
+<!--template-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" style="font-size:16px" href="#">SAR INVOICE
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        <li><a href="bill.html">Product Bill</a></li>
+			          <li><a href="servicebill.html">Service Bill</a></li>
+			        </ul>
+			    </li>
+                <li ><a href="product.html" class="" style="">Add Product</a>
+                </li>
+                <li><a href="buyer.html" class="">Add Buyer</a>
+                </li> 
+				<li><a href="service.html" class="">Add Service</a>
+                </li>				
+               
+            </ul>
+	
+	<div class="input-group" id="adv-search" style="
+    margin-top: 5px; margin-bottom:5px;" >
+                <input type="number" class="form-control input-md" id="headerSearchInvoiceNum" placeholder="Enter Invoice Number ... " style="float:none" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchStartDate" placeholder="fff" style="float:none;width:50%" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchEndDate" style="float:none;width:50%" />
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchStartDate" class="hidden">Start Date</label>
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchEndDate" class="hidden">End Date</label>
+                <div class="input-group-btn" >
+                    <div class="btn-group" role="group" id="drpCriteria">
+                        <div class="dropdown dropdown-md">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Criteria<span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form" style="padding:3px">
+                                   <div >                                    
+                                        <select class="form-control" id="criteria">
+                                            <option value="num" selected>Invoice Number</option>
+											<!--  <option value="date" >Invoice Date</option> -->
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary center" id="btnCriteria"><span class="fa fa-chevron-circle-right" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><a type="button" href="user.html" id="btnUser" class="btn btn-success" aria-expanded="false"><span class="fa fa-user"></span> User</a></div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnLogout" class="btn btn-danger" aria-expanded="false"><span class="fa fa-user"></span> Logout</button></div>
+				
+            </div>
+			
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div><br>
+
+
+<div class="container" id="contentDiv">
+	
+			 <div class="col-md-12">
+				<div class="center-block text-center">
+					<h1>Generate Your Bill</h1>
+					<p class="lead">Enter Details</p>
+				</div>
+			</div>
+            <div class="row">            
+
+                <div class="col-md-6">                 
+                  <h2 style="text-align:center"> Add Buyer</h2>
+				  <div class="row">
+				  <div class="col-md-11"><input type="search" class="form-control pull-right" id="txtBuyerName" placeholder="Enter Buyer ..." /></div>
+				  <div class="col-md-1"><span class="fa fa-plus-circle fa-2x" id="btnBuyerAdd" style="cursor:pointer;vertical-align: -webkit-baseline-middle;color: #5cb85c;"></span></div>
+				  </div><br><br>
+                  
+                  <div class="panel panel-default height">
+                        <div class="panel-heading">Buyer Details:-</div>
+                        <div class="panel-body panel1">
+                            <strong>Buyer Name: </strong> <input type="text" class="form-control form-width-1 pull-right" value="" id="txtBName" placeholder="" /><br><br>
+                            <label><strong>GSTIN: </strong></label> <input type="text" onkeypress="CheckLength(this.value);" class="form-control form-width-1 pull-right" id="txtGstin" placeholder="" /><br><br>
+									
+							<strong>Address: </strong> <input type="textarea" class="form-control form-width-1 pull-right" id="txtAddress" placeholder="" /><br><br>							
+							<strong>State: </strong> <input type="text" class="form-control form-width-1 pull-right" id="txtState" placeholder="" /><br><br>
+							<strong>StateCode: </strong> <input type="number" class="form-control form-width-1 pull-right" id="txtStateCode" placeholder="" /><br><br>		
+                        </div>
+                    </div>                
+                </div><!--/col-->
+				
+				 <div class="col-md-6">                 
+                  <h2 style="text-align:center"> Add Consignee</h2>
+				  <div class="row">
+				  <div class="col-md-11"><input type="search" class="form-control pull-right" id="txtConsigneeName" placeholder="Enter Consignee ..." /></div>
+				  <div class="col-md-1"><span class="fa fa-plus-circle fa-2x" id="btnConsigneeAdd" style="cursor:pointer;vertical-align: -webkit-baseline-middle;color: #5cb85c;"></span></div>
+				  </div><br><br>
+                  
+                  <div class="panel panel-default height">
+                        <div class="panel-heading">Consignee Details:-</div>
+                        <div class="panel-body panel1">
+                            <strong>Consignee Name: </strong> <input type="text" class="form-control form-width-1 pull-right" value="" id="txtConName" placeholder="" /><br><br>
+                            <label><strong>GSTIN: </strong></label> <input type="text" onkeypress="CheckLength(this.value);" class="form-control form-width-1 pull-right" id="txtConGstin" placeholder="" /><br><br>
+									
+							<strong>Address: </strong> <input type="textarea" class="form-control form-width-1 pull-right" id="txtConAddress" placeholder="" /><br><br>							
+							<strong>State: </strong> <input type="text" class="form-control form-width-1 pull-right" id="txtConState" placeholder="" /><br><br>
+							<strong>StateCode: </strong> <input type="number" class="form-control form-width-1 pull-right" id="txtConStateCode" placeholder="" /><br><br>		
+                        </div>
+                    </div>                
+                </div><!--/col-->
+				</div>
+				
+				<div class="row">
+				<div class="col-md-12">
+				<div class="panel panel-success height">
+				<div class="panel-heading">Transportation Details:-</div>
+                 <div class="panel-body">
+				 <div class="col-md-2"><strong>PO Number: </strong> <input type="text" class="form-control pull-right" id="txtTPonumber" maxlength="25" placeholder="" /></div>
+						<div class="col-md-3"><strong>Transportation Mode: </strong> <input type="text" disabled class="form-control pull-right" id="txtTMode" value="" placeholder="" /></div>
+						<div class="col-md-2"><strong>Vehicle Number: </strong> <input type="text" disabled maxlength="12" class="form-control pull-right" value="" id="txtVehicleNumber" placeholder="" /></div>
+						<div class="col-md-2"><strong>Date Of Supply: </strong> <input type="date" max="3000-12-31" class="form-control pull-right" id="txtDOS" placeholder="" /></div>
+						<div class="col-md-3"><strong>Place Of Supply: </strong> 
+								<select class="form-control pull-right" id="txtPOS">
+											<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+											<option value="Andhra Pradesh">Andhra Pradesh</option>
+											<option value="Andhra Pradesh (New)">Andhra Pradesh (New)</option>
+											<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+											<option value="Assam">Assam</option>
+											<option value="Bihar">Bihar</option>
+											<option value="Chandigarh">Chandigarh</option>
+											<option value="Chhattisgarh">Chhattisgarh</option>
+											<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+											<option value="Daman and Diu">Daman and Diu</option>
+											<option value="Delhi">Delhi</option>
+											<option value="Goa">Goa</option>
+											<option value="Gujarat">Gujarat</option>
+											<option value="Haryana">Haryana</option>
+											<option value="Himachal Pradesh">Himachal Pradesh</option>
+											<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+											<option value="Jharkhand">Jharkhand</option>
+											<option value="Karnataka">Karnataka</option>
+											<option value="Kerala">Kerala</option>
+											<option value="Lakshadweep Islands">Lakshadweep Islands</option>
+											<option value="Madhya Pradesh">Madhya Pradesh</option>
+											<option value="Maharashtra">Maharashtra</option>
+											<option value="Manipur">Manipur</option>
+											<option value="Meghalaya">Meghalaya</option>
+											<option value="Mizoram">Mizoram</option>
+											<option value="Nagaland">Nagaland</option>
+											<option value="Odisha">Odisha</option>
+											<option value="Pondicherry">Pondicherry</option>
+											<option value="Punjab">Punjab</option>
+											<option value="Rajasthan">Rajasthan</option>
+											<option value="Sikkim">Sikkim</option>
+											<option value="Tamil Nadu">Tamil Nadu</option>
+											<option value="Telangana">Telangana</option>
+											<option value="Tripura">Tripura</option>
+											<option value="Uttar Pradesh">Uttar Pradesh</option>
+											<option value="Uttarakhand">Uttarakhand</option>
+											<option value="West Bengal">West Bengal</option>
+											</select>
+						</div>
+				</div>
+				</div>
+				</div>			
+				</div>
+				<div class="row">
+				<div class="col-md-1 text-center"><h4 style="font-size:14px;font-weight:600">Reverse Charge</h4></div>
+					<div class="col-md-1">
+					<label class="switch">
+						  <input class="switch-input" type="checkbox" />
+						  <span class="switch-label" data-on="Yes" data-off="No"></span> 
+						  <span class="switch-handle"></span> 
+						 </label>
+					</div>
+					<div class="col-md-2 text-center"><h4 style="font-size:12px;font-weight:600">Invoice Date</h4></div>
+					<div class="col-md-2">
+					<input type="date" max="3000-12-31" class="form-control" id="txtDate" placeholder="" />
+					</div>
+					<div class="col-md-1 text-center"><h4 style="font-size:12px;font-weight:600">Other Charges</h4></div>
+					<div class="col-md-2">
+					<input type="number" class="form-control" min="0" oninput="validity.valid||(value='');" id="freight" value="0.0" placeholder="enter charges ...">
+					</div>
+
+					<div class="col-md-1 text-center"><h4 style="font-size:12px;font-weight:600">Tax On Other Charges(%)</h4></div>
+					<div class="col-md-2">
+					<input type="number" class="form-control" min="0" oninput="validity.valid||(value='');" id="taxOnFreight" value="0.0" placeholder="enter charges ...">
+					</div>
+
+					</div>
+			
+				<div class="row">				
+				<div class="col-md-12">
+	<h3 style="text-align:center">Add Service</h3>
+	<div class="row">
+				  <div class="col-md-offset-3 col-md-6"><input type="search" class="form-control pull-right" id="txtProductName" placeholder="Enter Service ..." /></div>
+				  <div class="col-md-1"><input type="submit" class="btn btn-primary" id="btnProductFind" value="Add"></div>
+				  </div>
+                  <br>
+                  <div class="row">
+                      <div style="text-align:center"> 
+                        <input type="submit" class="btn btn-default" id="btnServiceBillGenerate" value="Generate Bill">
+                    </div> 
+                    <!--  <div class="col-md-2"> 
+                        <input type="submit" class="btn btn-default" id="btnServiceBillGenerateDuplicate" value="Generate Duplicate Bill">
+                    </div>
+                     <div class="col-md-2"> 
+                        <input type="submit" class="btn btn-default" id="btnServiceBillGenerateTriplicate" value="Generate Triplicate Bill">
+                    </div>  -->
+                  </div><br>
+				  
+			<div class="row">
+				<div class="col-sm-6 prods" id="id-1">
+				    <div class="panel panel-success height">
+                        <div class="panel-heading">Service Details:-</div>
+                        <div class="panel-body">
+						<div class="row">
+						<div class="col-md-6"><strong>Service Name: </strong> <input type="text" readonly class="form-control pull-right" id="txtPName" placeholder="" /></div>
+                           <div class="col-md-6"><strong>SAC Code: </strong><input type="text" readonly class="form-control pull-right" onkeypress="CheckLength(this.value);" id="txtHSNCode" placeholder="" /></div>                   	
+							<div class="col-md-6"><strong>Discount(%): </strong> <input type="number" min="0" value="0" max = "100" oninput="validity.valid||(value='');" id="txtDiscount" class="form-control pull-right" placeholder="" /></div>
+							<div class="col-md-6"><strong>Amount: </strong> <input type="number" value="0" min="0.0" class="form-control pull-right" id="txtAmount" placeholder="" /></div>
+							<div class="col-md-6 cgst"><strong>CGST(%): </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtCgst" placeholder="" /></div>
+						   <div class="col-md-6 sgst"><strong>SGST(%): </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtSgst" placeholder="" /></div>
+						   <div class="col-md-6 igst"><strong>IGST(%): </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtIgst" placeholder="" /></div>	<br>
+							 
+							  <div class="col-md-6"><strong>Taxable Value (Amount-Discount): </strong> <input type="text" readonly class="form-control pull-right" id="txtTax" placeholder="" /></div>
+							   <div class="col-md-6 cgstAmount"><strong>CGST Amount: </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtCgstAmount" placeholder="" /></div>
+							   <div class="col-md-6 sgstAmount"><strong>SGST Amount: </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtSgstAmount" placeholder="" /></div>
+							   <div class="col-md-6 igstAmount"><strong>IGST Amount: </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtIgstAmount" placeholder="" /></div>
+							  <div class="col-md-6"><strong>Final Amount: </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtFinalAmount" placeholder="" /></div> 
+							</div>  
+							  <div class="col-md-6" style="text-align:center;margin-top:10px"><input type="submit" class="btn btn-primary" id="btnServicePriceShow" value="Show Prices"></div>
+						  <div class="col-md-6" style="text-align:center;margin-top:10px"><input type="submit" class="btn btn-success" id="btnBillServiceAdd" value="Add To Bill"></div>
+						  <div class="col-md-6 hidden"><strong>Service Id: </strong> <input type="text" readonly class="form-control pull-right" value="0" id="txtProductId" placeholder="" /></div>
+                        </div>
+						 
+                    </div> 
+				</div>
+				<input type="button" class="btn btn-success btn-sm col-md-offset-1 col-md-2" id="btnServiceEdit" name="Edit Selected Service" value="Edit Selected Service">
+				<input type="button" class="btn btn-danger btn-sm col-md-offset-1 col-md-2" id="btnDeleteService" name="Delete Selected Product" value="Delete Selected Service">
+				<br><br>
+				<div class="col-md-6">
+							<table class="display table table-bordered table-responsive" id="myServiceTable" cellspacing="0" width="100%">
+							<thead>
+							  <tr>
+								<th>Service Name</th>
+								<th>SAC Code</th>
+								<th>Amount</th>		
+								<th>Discount</th>							
+								<th>Final Amount</th>				
+								<th>CGST</th>
+								<th>SGST</th>
+								<th>IGST</th>
+								<th>Taxable Value</th>
+								<th>CGST Amount</th>
+								<th>SGST Amount</th>
+								<th>IGST Amount</th>
+								<th>ServiceId</th>
+							  </tr>
+							</thead>
+							<tbody>
+							
+							</tbody>
+						  </table>
+				</div>
+				
+				
+				
+			</div>
+
+			</div>
+            </div><!--/row-->
+			
+</div><!--/container-->
+		<div class="container hidden" id="criteriaDetails">
+			<div style="font-size:16px; margin-left:20%" class="col-md-8">
+				<div class="panel panel-success height">
+		            <div class="panel-heading">Bill Details:-</div>
+		            <div class="panel-body ">
+			            <div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">Transportation Mode: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTMode">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">Vehicle Number: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTVehicleNo">Vehicle</label></div>
+						</div> <br>
+						<div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">Date Of Supply: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTDos">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">Place Of Supply: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTPos">Vehicle</label></div>
+						</div> <br>
+						<div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">Name - Buyer Billed: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblBuyerIdBilledName">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">Name - Buyer Shipped: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblBuyerShippedName">Vehicle</label></div>
+						</div> <br>
+						<div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">Taxable Value: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTaxableValue">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">Other Charges: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblOtherCharges">Vehicle</label></div>
+						</div> <br>
+						
+						<div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">CGST: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblCgst">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">SGST: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblSgst">Vehicle</label></div>
+						</div> <br>
+						
+						<div class="row">
+							<div class="col-md-3 col-sm-6"><span class="badge">IGST: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblIgst">Vehicle</label></div>
+							<div class="col-md-3 col-sm-6"><span class="badge">Total: </span></div>
+							<div class="col-md-3 col-sm-6" style="color:#caaa"><label id="lblTotal">Vehicle</label></div>
+						</div> <br>
+						
+						<div class="row">
+			                <div class="col-sm-4  col-md-3"><input type="submit" class="btn btn-primary" id="btnBillShow" value="Show Bill"></div>
+			                <div class="col-sm-4  col-md-3"><input type="submit" class="btn btn-success" id="btnBillPrint" value="Print/Save"></div>
+			                <!--  <div class="col-sm-4  col-md-2"><input type="submit" class="btn btn-danger" id="btnBillPrint" value="Delete Bill"></div> -->
+			                <div class="col-sm-4 col-md-3"><input type="submit" class="btn btn-danger" id="btnBillCancel" value="Cancel Invoice"></div>
+			               
+			               	 <div class="col-sm-4  col-md-3"><input type="submit" class="btn btn-default" id="btnServiceBillEdit" value="Edit Bill"></div>
+			             </div>	
+			        </div>
+	        	</div> 
+			</div>	
+		</div>
+
+		<br>
+		<div id="invoiceByCriteria">
+			<div class ="container" id="divInvoice" style="">
+			<div class="col-xs-12" id="invoiceMain" id="" style="border:1px solid black;font-size:10px;">
+			<div class="row" style="height:auto;text-align:center">
+				
+					<div class="col-xs-6" id="gstinnumber" style="font-weight:600;font-size:10px;text-align:left">GSTIN - 1234567890123456</div>
+					<div class="col-xs-4" style="font-weight:600;font-size:10px;"></div>
+					<div class="col-xs-2" id="lblBillType" style="font-weight:600;font-size:10px;text-align:right">ORIGINAL</div>
+					<div class="col-xs-12" style="font-weight:600;font-size:18px;">TAX INVOICE</div>
+					<div class="col-xs-12" id="headerLogo" style="font-weight:600;font-size:16px;">AMKS & Co.</div>
+					<div class="col-xs-12" id="headerAddress" style="font-weight:600;font-size:14px;">1st Floor, Vikram - III, Plot No. 155
+					Sector - 1/A, Off Tagore Road, Gandhidham, Gujarat, India, Pin - 370201.</div>
+					<div class="col-xs-12" id="headerContact" style="font-weight:600;font-size:12px;">GSTIN: 24ABCPP1234Z1ZX</div>
+			</div>
+				<div class="row reverseTrans" style="border-top:1px solid black;">
+					 <div class="col-xs-6" style="border-right:1px solid black;">
+						Invoice No.: <label id="invoiceNo"></label><br>
+						Invoice Date: <label id="invoiceDate"></label><br>
+						<span>State: <label id="sellerState"></label> <label></label></span><br>
+						<span >State Code: <label id="sellerStateCode">-</label></span>
+					</div>
+					 <div class="col-xs-6" >
+					 	Reverse Charge: <label id="reverseCharge"></label><br>
+					  PO Number: <label id="tPonumber"></label><br>
+						Date Of Supply: <label id="tdos"></label><br>
+						<span>Place Of Supply: <label id="tpos">-</label></span>
+					</div>
+				</div>
+				
+				<div class="row" style="height:5px;border-bottom:1px solid black;border-top:1px solid black"></div>
+				
+				<div class="row buyerConsignee" style="border-bottom:1px solid black">
+					 <div class="col-xs-6" style="border-right:1px solid black;">
+					 <p class="text-center" style="font-weight:600;border-bottom:1px solid black">Details of Receiver | Billed to:</p>
+						Name: <label id="rname"></label><br>
+						Address: <label id="raddress"></label><br>
+						GSTIN: <label id="rgstin"></label><br>
+						<span>State: <label id="rstate">-</label></span><br>
+						 <span >State Code: <label id="rstatecode">-</label></span>
+					</div>
+					 <div class="col-xs-6" >
+					 <p class="text-center" style="font-weight:600;border-bottom:1px solid black">Details of Consignee | Shipped to:</p>
+						Name: <label id="cnsname"></label><br>
+						Address: <label id="cnsaddress"></label><br>
+						GSTIN: <label id="cnsgstin"></label><br>
+						<span>State: <label id="cnsstate">-</label></span><br>
+						<span >State Code: <label id="cnsstatecode">-</label></span>
+					</div>
+				</div>
+				
+				<div class="row" style="height:5px;"></div>
+								
+			<div class="row">
+			
+			<table class="invoiceTable" id="invoiceTable" style="font-size:12px;font-weight:400;height:350px;min-height:350px" border="1" width="100%">
+							<thead style="background-color:#dce6f1;color:black">
+							<tr>
+						<th >S.<br>No</th>
+						<th>Description</th>
+						<th>SAC</th>
+						<th>Amount</th>
+						<th>Dis(%)</th>
+						<th >Taxable Value</th>
+						<th >CGST<br>Rate</th>
+						<th >CGST<br>Amt</th>
+						<th >SGST<br>Rate</th>
+						<th >SGST<br>Amt</th>
+						<th >IGST<br>Rate</th>
+						<th >IGST<br>Amt</th>
+						<th >Total</th></tr>
+						</thead>
+				<tbody style="text-align:center">
+				  
+				  <tr style="vertical-align:bottom">				
+					<td colspan="2" style="text-align:center;font-weight:600">Total</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+							<td></td>
+							<td></td>
+							<td></td>					
+							<td colspan="4" id="totalAmount" style="text-align:center;font-weight:600">0</td>
+				  </tr>
+				</tbody>
+				</table>				
+			</div>
+			
+			<div class="row" style="height:auto;margin-left:10px;margin-bottom:10px;padding:8px;font-weight:600">   Total Amount (in words) : <span id="amtInWords">Zero</span></div>
+			
+			
+			<div class="row reverseTrans" style="border-top:1px solid black;">
+					 <div class="col-xs-6" style="border-right:1px solid black;height:145px">
+												<h6 style="text-align:center">Summary</h6>
+								<table id="tblSummary" border="1" style="width:100%;text-align:center">
+								 <tr ><th style="text-align:center">Rate</th>
+								<th style="text-align:center">Sale</th>
+								<th style="text-align:center">CGST</th><th style="text-align:center">SGST</th>
+								<th style="text-align:center">IGST</th> </tr>
+								<tr id="row0"><td>0%</td><td id="TotalSale0">-</td><td id="cgstRate0">-</td><td id="sgstRate0">-</td><td id="igstRate0">-</td></tr>
+								<tr id="row5"><td>5%</td><td id="TotalSale5">-</td><td id="cgstRate5">-</td><td id="sgstRate5">-</td><td id="igstRate5">-</td></tr>
+								<tr id="row12"><td>12%</td><td id="TotalSale12">-</td><td id="cgstRate12">-</td><td id="sgstRate12">-</td><td id="igstRate12">-</td></tr>
+								<tr id="row18"><td>18%</td><td id="TotalSale18">-</td><td id="cgstRate18">-</td><td id="sgstRate18">-</td><td id="igstRate18">-</td></tr>
+								<tr id="row28"><td>28%</td><td id="TotalSale28">-</td><td id="cgstRate28">-</td><td id="sgstRate28">-</td><td id="igstRate28">-</td></tr>
+								<tr><td colspan="3" >Other Charges - <span id="lblFreight"></span></td><td colspan="2">@ Tax - <span id="lblFreightTax"></span></td></tr>
+								</table><br>
+								
+					</div>
+					 <div class="col-xs-6" id="allDetails" ><br>
+						<table id="tblFinalCol" style="border:1px solid black;" height="100%" width="100%">
+						<tr style="border-bottom:1px solid black"><td>Total Amount Before Tax</td><td id="amtBeforeTax">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Add:Other Charges</td><td id="freightCharges">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Taxable Value</td><td id="taxableValue">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Add: CGST</td><td id="totalCgst">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Add: SGST</td><td id="totalSgst">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Add: IGST</td><td id="totalIgst">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>Total Amount After Tax</td><td id="amtAfterTax">-</td></tr>
+						<tr style="border-bottom:1px solid black"><td>GST on Reverse Charge</td><td id="totalReverse">-</td></tr>
+						</table>
+					</div>
+				</div>
+			
+			<div class="row" ></div>
+			<div class="row" ></div>
+			
+			<div class="row" style="height:auto;border-top:1px solid black">
+					<div class="col-xs-6" style="text-align:center;border-right:1px solid black;">: Terms and Conditions :<p id="footer" style="word-wrap: break-word;text-align:left;"></p></div>
+					<div class="col-xs-6" style="text-align:center;position:inherit"><p style="word-wrap: break-word;">
+			</p>
+						<span style="position:absolute;bottom:0;right:0">Authorised Signatory</span></div>
+			</div>
+			</div>
+			
+			<div id="secondDiv"></div>
+			<div id="thirdDiv"></div>
+			
+			</div>  
+		</div>
+		<br>
+
+		<div class="" style="text-align:center;font-weight:600;font-size:16px">
+			Powered By <a href="#">Sar Invoice</a>
+		</div>
+		<div class="" style="text-align:center;font-weight:600">
+			<a href="#">About</a> | <a href="#">Contact</a>
+		</div><br>
+
+
+<!-- <div class="loader-wrapper"><div id="loader"><img src="http://cdn7.evimed.net/wp-content/uploads/2017/02/loading.gif" /></div></div> -->
+
+<!--/template-->
+	<!-- script references -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-ui.js"></script>		
+		<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="js/dataTables.select.min.js"></script>
+		<script type="text/javascript" src="js/apiNames.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/html2canvas.min.js"></script>
+	</body>
+</html>

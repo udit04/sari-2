@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Profile | SAR INVOICE</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/fontawesome-4.3.0.min.css" rel="stylesheet">
+		<script src="js/jquery.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/side.css" rel="stylesheet">
+	</head>
+	<body>
+<!--template-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" style="font-size:16px" href="#">SAR INVOICE
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        <li><a href="bill.html">Product Bill</a></li>
+			          <li><a href="servicebill.html">Service Bill</a></li>
+			        </ul>
+			    </li>
+                <li ><a href="product.html" class="" style="">Add Product</a>
+                </li>
+                <li class=""><a href="buyer.html" class="">Add Buyer</a>
+                </li> 				
+				<li><a href="service.html" class="">Add Service</a>
+                </li> 
+               
+            </ul>
+
+	
+	<div class="input-group" id="adv-search" style="
+    margin-top: 5px; margin-bottom:5px;" >
+                <input type="number" class="form-control input-md" id="headerSearchInvoiceNum" placeholder="Enter Invoice Number ... " style="float:none" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchStartDate" placeholder="fff" style="float:none;width:50%" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchEndDate" style="float:none;width:50%" />
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchStartDate" class="hidden">Start Date</label>
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchEndDate" class="hidden">End Date</label>
+                <div class="input-group-btn" >
+                    <div class="btn-group" role="group" id="drpCriteria">
+                        <div class="dropdown dropdown-md">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Criteria<span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form" style="padding:3px">
+                                   <div >                                    
+                                        <select class="form-control" id="criteria">
+                                            <option value="num" selected>Invoice Number</option>
+											 <!-- <option value="date" >Invoice Date</option> -->
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary center" id="btnCriteria"><span class="fa fa-chevron-circle-right" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnUser" class="btn btn-success" aria-expanded="false"><span class="fa fa-user"></span> User</button></div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnLogout" class="btn btn-danger" aria-expanded="false"><span class="fa fa-user"></span> Logout</button></div>
+				
+            </div>
+
+			
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10"><br>
+             <h1 id="mainLine">Random User Name</h1>
+<br>
+        </div>
+      <div class="col-sm-2"><a class="pull-right"><img title="profile image" id="profilePic" class="img img-thumbnail img-responsive" src="images/user.png"></a>
+
+        </div>
+    </div>
+  <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong >Name</strong></span> <span id="mainName">Random Name</span></li>
+                <li class="list-group-item text-right"><span class="pull-left" ><strong >Email</strong></span> <span id="mainEmail">a@gmail.com</span></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong >State</strong></span> <span id="mainState">State</span></li>
+                <li class="list-group-item text-right"><span class="pull-left" ><strong >State Code</strong></span> <span id="mainStateCode">10</span></li>
+            </ul>     
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
+                </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong >Total Products Added</strong></span> <span id="totalProd">37<span></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong >Total Buyers Added</strong></span> <span id="totalBuyer">78</span></li>
+            </ul>
+        </div>
+        <div class="col-sm-9" contenteditable="false">
+            <div class="panel panel-default target">
+                <div class="panel-heading" contenteditable="false">General Details</div>
+                <div class="panel-body">
+	                <div class="row">
+						<div class="col-md-6">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Current Invoice Count
+									</h3>
+									<h4 id="invoiceCount">
+										10
+									</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Cancelled Invoice Count
+									</h3>
+									<h4 id="cancelledCount">
+										10
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Total Sale
+									</h3>
+									<h4 id="totalSale">
+										10
+									</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Total Revenue
+									</h3>
+									<h4 id="totalRevenue">
+										10
+									</h4>
+								</div>
+							</div>
+						</div>                
+		            </div>            
+        		</div>
+              
+    		</div>
+           	<div class="panel panel-default">
+                <div class="panel-heading">Invoices</div>
+                <div class="panel-body">
+                	<div class="col-md-6">
+                		<input type="button" class="btn btn-primary" id="myInvoices" value="My Invoices" />
+				</div>      
+				<div class="col-md-6">
+					<input type="button" class="btn btn-danger" id="myCancelledInvoices" value="My Cancelled Invoices" />
+				</div>      
+                </div>
+			</div>
+		</div>
+    </div>      
+</div>
+
+<div id="invoiceModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">My Invoices</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sno</th>
+              <th>Buyer</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Active</th>
+            </tr>
+          </thead>
+          <tbody id="tblMyInvoice">
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSubmitChanges" class="btn btn-primary" >Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cancelledInvoiceModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">My Cancelled Invoices</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sno</th>
+              <th>Buyer</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Active</th>
+            </tr>
+          </thead>
+          <tbody id="tblMyCancelledInvoice">
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSubmitChanges" class="btn btn-primary" >Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loader-wrapper">
+  <div id="loader"><img src="http://cdn7.evimed.net/wp-content/uploads/2017/02/loading.gif" />
+  </div>
+</div>
+
+<script type="text/javascript" src="js/apiNames.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/user.js"></script>
+</body>
+</html>

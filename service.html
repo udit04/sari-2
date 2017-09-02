@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Service | SAR INVOICE</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/fontawesome-4.3.0.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" href="css/select.dataTables.min.css" />
+	<script src="js/jquery.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/side.css" rel="stylesheet">
+	</head>
+	<body>
+<!--template-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" style="font-size:16px" href="#">SAR INVOICE
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        <li><a href="bill.html">Product Bill</a></li>
+			          <li><a href="servicebill.html">Service Bill</a></li>
+			        </ul>
+			    </li>
+                <li><a href="product.html" class="" style="">Add Product</a>
+                </li>
+                <li><a href="buyer.html" class="">Add Buyer</a>
+                </li> 		
+					<li class="active"><a href="#" class="">Add Service</a>
+                </li> 
+               
+            </ul>
+
+	
+	<div class="input-group" id="adv-search" style="
+    margin-top: 5px; margin-bottom:5px;" >
+                <input type="number" class="form-control input-md" id="headerSearchInvoiceNum" placeholder="Enter Invoice Number ... " style="float:none" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchStartDate" placeholder="fff" style="float:none;width:50%" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchEndDate" style="float:none;width:50%" />
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchStartDate" class="hidden">Start Date</label>
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchEndDate" class="hidden">End Date</label>
+                <div class="input-group-btn" >
+                    <div class="btn-group" role="group" id="drpCriteria">
+                        <div class="dropdown dropdown-md">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Criteria<span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form" style="padding:3px">
+                                   <div >                                    
+                                        <select class="form-control" id="criteria">
+                                            <option value="num" selected>Invoice Number</option>
+											 <!-- <option value="date" >Invoice Date</option> -->
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary center" id="btnCriteria"><span class="fa fa-chevron-circle-right" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><a type="button" id="btnUser" href="user.html" class="btn btn-success" aria-expanded="false"><span class="fa fa-user"></span> User</a></div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnLogout" class="btn btn-danger" aria-expanded="false"><span class="fa fa-user"></span> Logout</button></div>
+				
+            </div>
+			
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container" id="contentDiv">
+    <div class="col-md-12">
+        <div class="center-block text-center">
+            <h1>SERVICE</h1>
+        </div>
+        <!--/container-->
+    </div>
+	<div class="row">
+	<div class="col-md-5"></div>
+	</div>
+	<div class="row">
+	<div class="col-md-5">
+	<h3 style="text-align:center">Add Your Service</h3>
+	<div class="panel panel-default height">
+                        <div class="panel-heading">Service Details:-</div>
+                        <div class="panel-body">
+                            <strong>Service Name: </strong> <input type="text" class="form-control pull-right" id="txtName" placeholder="" /><br><br>
+                            <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtAlias" placeholder="" /><br><br>
+                            <label><strong>SAC Code: </strong></label> <input type="text" class="form-control pull-right" id="txtSacCode" placeholder="" /><br><br>
+										<strong>IGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtIgst" placeholder="" /><br><br>
+							<strong>CGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtCgst" placeholder="" /><br><br>							
+							<strong>SGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtSgst" placeholder="" /><br><br>							
+                        </div>
+						
+						<input type="submit" class="btn btn-success col-md-offset-5 col-md-2" id="btnServiceAdd" name="Add" value="ADD"><br><br>
+                    </div>
+		</div>
+	<div class="col-md-7">
+	<h3 style="text-align:center">Your Services</h3>
+	<input type="button" class="btn btn-success btn-md col-md-offset-2 col-md-4" id="btnEdit" name="Edit Selected Service" value="Edit Selected Service">
+	<input type="button" class="btn btn-danger btn-md col-md-offset-1 col-md-4" id="btnDelete" name="Delete Selected Service" value="Delete Selected Service"><br><br>
+	<table class="display table-bordered table-responsive	" id="myTable" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>SAC Code</th>
+		<th>IGST(in %)</th>
+		<th>CGST(in %)</th>		
+		<th>SGST(in %)</th>
+		<th>Service Id</th>
+		<th>Alias</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
+  </div>
+	</div>
+	
+			
+</div>
+<br><br>
+
+
+
+<!-- Modal -->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Details</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Service Name: </strong> <input type="text" class="form-control pull-right" id="txtEditName" placeholder="" /><br><br>
+         <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtEditAlias" placeholder="" /><br><br>
+                            <label><strong>SAC Code: </strong></label> <input type="text" class="form-control pull-right" id="txtEditSacCode" placeholder="" /><br><br>
+										<strong>IGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtEditIgst" placeholder="" /><br><br>
+							<strong>CGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtEditCgst" placeholder="" /><br><br>							
+							<strong>SGST (in %): </strong> <input type="number" class="form-control pull-right" id="txtEditSgst" placeholder="" /><br><br>	
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSubmitChanges" class="btn btn-primary" >Submit Changes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--/template-->
+	<!-- script references -->
+
+<script type="text/javascript" src="js/apiNames.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dataTables.select.min.js"></script>
+<script src="js/service.js"></script>
+
+		
+	</body>
+</html>

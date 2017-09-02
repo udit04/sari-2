@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   <meta charset="utf-8">
+   <title>SAR INVOICE</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+
+  <style>
+  .shadow {
+-moz-box-shadow: 0 0 2px 2px #999;
+-webkit-box-shadow: 0 0 2px 2px #999;
+}
+
+#btnForgot, #btnSignup{
+	cursor: pointer;
+}
+
+</style>
+<script type="text/javascript" src="js/apiNames.js"></script>
+<script>
+$(document).ready(function(){
+    $("#driver").click(function(){
+    	login();
+    });
+
+    $(document.body).keyup(function(event){
+	    if(event.keyCode == 13){
+	        login();
+	    }
+	});
+	
+	 $("#btnForgot").click(function(e){
+		e.preventDefault();
+		$(".main").fadeOut(2);
+		$(".temp").removeClass("hidden");
+		$(".temp").fadeIn();
+	 });
+	 
+	 $("#btnReset").click(function(){	 
+		$.post
+				( 
+						  API_USER,
+						  {
+									"action": "forgotpassword",
+									"identifier": $("#txtUser").val()							
+						  },
+						  function(data) {
+						  var jData = JSON.parse(data);
+						  if(jData['status']['message'] != '0')
+							 alert("Couldn't Send Link");
+							else{
+							  alert("Link Send Successfully")
+							  $(".main").fadeIn();
+								$(".temp").addClass("hidden");
+								$(".temp").fadeOut(2);
+							  
+							}
+						  }
+				);
+	 });
+
+						$('#main').keypress(function (e) {
+					  if(e.keyCode=='13') //Keycode for "Return"
+					     $('#driver').click();
+					}); 
+	
+});
+
+function login(){
+	console.log('hello');
+		$.post( 
+	          API_USER,
+	          { action: "login",
+				username: document.getElementById('txtUsername').value,
+				password: document.getElementById('txtPass').value},
+	          function(data) {
+			  var jData = JSON.parse(data);
+			  if(jData['status']['message'] != '1')
+	             alert('Wrong id/Password');
+				else{
+				  localStorage.setItem('userId', jData['record'][0]['userId']);
+				  localStorage.setItem('sellerStateCode', jData['record'][0]['statecode']);
+				  localStorage.setItem('state', jData['record'][0]['state']);
+				  localStorage.setItem('invoiceprefixtext', jData['record'][0]['invoiceprefixtext']);
+					localStorage.setItem('userName', document.getElementById('txtUsername').value);
+				  window.location = 'bill.html';
+				}
+	          }
+	       );
+}
+</script>
+
+<title>Panel</title>
+</head>
+<body style=" background-image:url(images/2.jpg); background-size:cover;">
+    <form id="form1" runat="server">
+    <div align="center">
+    
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    
+    
+        <div class="shadow main" 
+            style="width:400px; background-color:White; margin:auto; visibility:inherit; border-radius:16px; " >
+            <div style="width:400px; height:auto; background-color:darkgray; font-weight:bold; font-size:x-large; padding:10px; border-radius: 16px 16px 1px 1px" >
+    Login</div><br />
+     <label><span class="glyphicon glyphicon-user"></span> Username</label>&nbsp;
+            <input id="txtUsername" type="text" class="input-md" /><br />
+                    
+                    <br />
+
+                    <label><span class="glyphicon glyphicon-eye-open"></span> Password</label>&nbsp;&nbsp;
+            <input id="txtPass" type="password" class="input-md" />
+                    <br /><br />
+
+			<input type = "button" class="btn btn-primary col-md-offset-2 col-md-8 btn-md" id = "driver" value = "Login" />	<br><br>
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<a id="btnForgot" class="pull-left" >Forgot Password</a>
+					<a id="btnSignup" class="pull-right" >Sign Up</a>
+				</div>					
+			</div>
+			<br>	
+			                 
+
+    </div>
+	
+	<div class="shadow temp hidden" 
+            style="width:400px; background-color:White; margin:auto; visibility:inherit; border-radius:16px; " >
+            <div style="width:400px; height:auto; background-color:darkgray; font-weight:bold; font-size:x-large; padding:10px; border-radius: 16px 16px 1px 1px" >
+    Forgot Password</div><br />
+     <label><span class="glyphicon glyphicon-user"></span> Email/Username</label>&nbsp;
+            <input id="txtUser" type="text" class="input-md" /><br /><br>
+
+			<input type = "button" class="btn btn-primary btn-md" id = "btnReset" value = "Send Reset Link" />	<br><br>	                 
+
+    </div>
+    
+    
+    </div>
+    </form>
+</body>
+</html>

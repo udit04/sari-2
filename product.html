@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Product | SAR INVOICE</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/fontawesome-4.3.0.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" href="css/select.dataTables.min.css" />
+	<script src="js/jquery.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">		
+		<link href="css/side.css" rel="stylesheet">
+	</head>
+	<body>
+<!--template-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" style="font-size:16px" href="#">SAR INVOICE
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        <li><a href="bill.html">Product Bill</a></li>
+			          <li><a href="servicebill.html">Service Bill</a></li>
+			        </ul>
+			    </li>
+                <li class="active"><a href="#" class="" style="">Add Product</a>
+                </li>
+                <li><a href="buyer.html" class="">Add Buyer</a>
+                </li> 	
+				<li><a href="service.html" class="">Add Service</a>
+                </li> 
+               
+            </ul>
+
+	
+	<div class="input-group" id="adv-search" style="
+    margin-top: 5px; margin-bottom:5px;" >
+                <input type="number" class="form-control input-md" id="headerSearchInvoiceNum" placeholder="Enter Invoice Number ... " style="float:none" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchStartDate" placeholder="fff" style="float:none;width:50%" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchEndDate" style="float:none;width:50%" />
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchStartDate" class="hidden">Start Date</label>
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchEndDate" class="hidden">End Date</label>
+                <div class="input-group-btn" >
+                    <div class="btn-group" role="group" id="drpCriteria">
+                        <div class="dropdown dropdown-md">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Criteria<span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form" style="padding:3px">
+                                   <div >                                    
+                                        <select class="form-control" id="criteria">
+                                            <option value="num" selected>Invoice Number</option>
+											 <!-- <option value="date" >Invoice Date</option> -->
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary center" id="btnCriteria"><span class="fa fa-chevron-circle-right" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><a type="button" href="user.html" id="btnUser" class="btn btn-success" aria-expanded="false"><span class="fa fa-user"></span> User</a></div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnLogout" class="btn btn-danger" aria-expanded="false"><span class="fa fa-user"></span> Logout</button></div>
+				
+            </div>
+			
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container" id="contentDiv">
+    <div class="col-md-12">
+        <div class="center-block text-center">
+            <h1>PRODUCTS</h1>
+        </div>
+        <!--/container-->
+    </div>
+	<div class="row">
+	<div class="col-md-5"></div>
+	</div>
+	<div class="row">
+	<div class="col-md-5">
+	<h3 style="text-align:center">Add Your Product</h3>
+	<div class="panel panel-default height">
+                        <div class="panel-heading">Product Details:-</div>
+                        <div class="panel-body">
+                            <strong>Product Name: </strong> <input type="text" class="form-control pull-right" id="txtName" placeholder="" /><br><br>
+                            <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtAlias" placeholder="" /><br><br>
+                            <label><strong>HSN Code: <a href="#" sty data-toggle="tooltip" title="No HSN code required for an annual turnover of < Rs 1.5 crores. &nbsp;&nbsp;&nbsp;"><span class="glyphicon glyphicon-info-sign"></span></a></strong></label> <input type="number" value="" class="form-control pull-right" id="txtHSNCode" placeholder="" /><br><br>
+                            <strong>IGST (%): </strong> <input type="number" class="form-control pull-right" id="txtIgst" placeholder="" /><br><br>
+							<strong>CGST (%): </strong> <input type="number" class="form-control pull-right" id="txtCgst" placeholder="" /><br><br>	
+							<strong>SGST (%): </strong> <input type="number" class="form-control pull-right" id="txtSgst" placeholder="" /><br><br>	
+                            <strong>Unit: </strong> <select class="form-control pull-right" onchange="Custom()" id="selectUnit">
+											<option value="KGS">Kgs-Kilograms</option>
+											<option value="custom">Custom Unit</option>
+											<option value="YDS">YDS-YARDS</option>
+											<option value="CBM">CBM-CUBIC METER</option>
+											<option value="CCM">CCM-CUBIC CENTIMETER</option>
+											<option value="CIN">CIN-CUBIC INCHES</option>
+											<option value="CMS">CMS-CENTIMETER</option>
+											<option value="CQM">CQM-CUBIC METERS</option>
+											<option value="GMS">GMS-GRAMS</option>
+											<option value="GRS">GRS-GROSS</option>
+											<option value="GYD">GYD-GROSS YARDS</option>
+											<option value="HKS">HKS-HANKS</option>
+											<option value="INC">INC-INCHES</option>
+											<option value="KLR">KLR-KILOLITER</option>
+											<option value="KME">KME-KILOMETERS</option>
+											<option value="LBS">LBS-POUNDS</option>
+											<option value="LOT">LOT-LOTS</option>
+											<option value="LTR">LTR-LITERS</option>
+											<option value="MGS">MGS-MILLI GRAMS</option>
+											<option value="MTR">MTR-METER</option>
+											<option value="MTS">MTS-METRIC TON</option>
+											<option value="SQF">SQF-SQUARE FEET</option>
+											<option value="SQI">SQI-SQUARE INCHES</option>
+											<option value="SQM">SQM-SQUARE METER</option>
+											<option value="SQY">SQY-SQUARE YARDS</option>
+											<option value="UNT">UNT-UNITS</option>
+											<option value="NOS">NOS-Numbers</option>
+											<option value="PAC">PAC-PACKS</option>
+											<option value="PCS">PCS-Pieces</option>
+											<option value="BAG">BAG-BAG</option>
+											<option value="BGS">BGS-BAGS</option>
+											<option value="BKL">BKL-BUCKLES</option>
+											<option value="BOU">BOU-BOU</option>
+											<option value="BOX">BOX-BOX</option>
+											<option value="BTL">BTL-BOTTLES</option>
+											<option value="BUN">BUN-BUNCHES</option>
+											
+											<option value="CTN">CTN-CARTON</option>
+											<option value="DOZ">DOZ-DOZEN</option>
+											<option value="DRM">DRM-DRUM</option>
+											<option value="FTS">FTS-FEET</option>
+											<option value="GGR">GGR-GREAT GROSS</option>											
+											<option value="ODD">ODD-ODDS</option>											
+											<option value="PRS">PRS-PAIRS</option>
+											<option value="QTL">QTL-QUINTAL</option>
+											<option value="ROL">ROL-ROLLS</option>
+											<option value="SDM">SDM-DECAMETER SQUARE</option>
+											<option value="SET">SET-SETS</option>
+											<option value="SHT">SHT-SHEETS</option>
+											
+											<option value="TBS">TBS-TABLETS</option>
+											<option value="THD">THD-THOUSANDS</option>
+											<option value="TOL">TOL-TOLA</option>
+											<option value="TON">TON-GREAT BRITAIN TON</option>
+											<option value="TUB">TUB-TUBES</option>
+											<option value="UGS">UGS-US GALLONS</option>										
+											<option value="VLS">VLS-Vials</option>
+											
+                                        </select><br><br>
+                                        <div id="lblCustomUnit" class="hidden"><strong >Custom Unit: </strong> <input type="text" class="form-control pull-right" id="txtCustom" placeholder="" /></div>
+                                        <div id="lblRate"><strong >Rate: </strong> <input type="number" class="form-control pull-right" id="txtRate" placeholder="" /></div>
+												
+                        </div>
+						
+						<input type="submit" class="btn btn-success col-md-offset-5 col-md-2" id="btnProductAdd" name="Add" value="ADD"><br><br>
+                    </div>
+		</div>
+	<div class="col-md-7">
+	<h3 style="text-align:center">Your Products</h3>
+	<input type="button" class="btn btn-success btn-md col-md-offset-2 col-md-4" id="btnEdit" name="Edit Selected Product" value="Edit Selected Product">
+	<input type="button" class="btn btn-danger btn-md col-md-offset-1 col-md-4" id="btnDelete" name="Delete Selected Product" value="Delete Selected Product"><br><br>
+	<table class="display table-bordered table-responsive	" id="myTable" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>HSN Code</th>
+        <th>Unit</th>
+		<th>IGST(in %)</th>
+		<th>CGST(in %)</th>		
+		<th>SGST(in %)</th>
+		<th>Product Id</th>
+		<th>Rate</th>
+		<th>Alias</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
+  </div>
+	</div>
+	
+			
+</div>
+<br><br>
+
+
+
+<!-- Modal -->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Details</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Product Name: </strong> <input type="text" class="form-control pull-right" id="txtEditName" placeholder="" /><br><br>
+        <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtEditAlias" placeholder="" /><br><br>
+                            <label><strong>HSN Code: <span class="fa fa-info"></span></strong></label> <input type="number" value="" class="form-control pull-right" id="txtEditHSNCode" placeholder="" /><br><br>
+                            <strong>IGST (%): </strong> <input type="number" class="form-control pull-right" id="txtEditIgst" placeholder="" /><br><br>
+							<strong>CGST (%): </strong> <input type="number" class="form-control pull-right" id="txtEditCgst" placeholder="" /><br><br>							
+							<strong>SGST (%): </strong> <input type="number" class="form-control pull-right" id="txtEditSgst" placeholder="" /><br><br>
+                            <strong>Unit: </strong> <select class="form-control pull-right" onchange="EditCustom()" id="editSelectUnit">
+											<option value="KGS">Kgs-Kilograms</option>
+											<option value="custom">Custom Unit</option>
+											<option value="YDS">YDS-YARDS</option>
+											<option value="CBM">CBM-CUBIC METER</option>
+											<option value="CCM">CCM-CUBIC CENTIMETER</option>
+											<option value="CIN">CIN-CUBIC INCHES</option>
+											<option value="CMS">CMS-CENTIMETER</option>
+											<option value="CQM">CQM-CUBIC METERS</option>
+											<option value="GMS">GMS-GRAMS</option>
+											<option value="GRS">GRS-GROSS</option>
+											<option value="GYD">GYD-GROSS YARDS</option>
+											<option value="HKS">HKS-HANKS</option>
+											<option value="INC">INC-INCHES</option>
+											<option value="KLR">KLR-KILOLITER</option>
+											<option value="KME">KME-KILOMETERS</option>
+											<option value="LBS">LBS-POUNDS</option>
+											<option value="LOT">LOT-LOTS</option>
+											<option value="LTR">LTR-LITERS</option>
+											<option value="MGS">MGS-MILLI GRAMS</option>
+											<option value="MTR">MTR-METER</option>
+											<option value="MTS">MTS-METRIC TON</option>
+											<option value="SQF">SQF-SQUARE FEET</option>
+											<option value="SQI">SQI-SQUARE INCHES</option>
+											<option value="SQM">SQM-SQUARE METER</option>
+											<option value="SQY">SQY-SQUARE YARDS</option>
+											<option value="UNT">UNT-UNITS</option>
+											<option value="NOS">NOS-Numbers</option>
+											<option value="PAC">PAC-PACKS</option>
+											<option value="PCS">PCS-Pieces</option>
+											<option value="BAG">BAG-BAG</option>
+											<option value="BGS">BGS-BAGS</option>
+											<option value="BKL">BKL-BUCKLES</option>
+											<option value="BOU">BOU-BOU</option>
+											<option value="BOX">BOX-BOX</option>
+											<option value="BTL">BTL-BOTTLES</option>
+											<option value="BUN">BUN-BUNCHES</option>
+											
+											<option value="CTN">CTN-CARTON</option>
+											<option value="DOZ">DOZ-DOZEN</option>
+											<option value="DRM">DRM-DRUM</option>
+											<option value="FTS">FTS-FEET</option>
+											<option value="GGR">GGR-GREAT GROSS</option>											
+											<option value="ODD">ODD-ODDS</option>											
+											<option value="PRS">PRS-PAIRS</option>
+											<option value="QTL">QTL-QUINTAL</option>
+											<option value="ROL">ROL-ROLLS</option>
+											<option value="SDM">SDM-DECAMETER SQUARE</option>
+											<option value="SET">SET-SETS</option>
+											<option value="SHT">SHT-SHEETS</option>
+											
+											<option value="TBS">TBS-TABLETS</option>
+											<option value="THD">THD-THOUSANDS</option>
+											<option value="TOL">TOL-TOLA</option>
+											<option value="TON">TON-GREAT BRITAIN TON</option>
+											<option value="TUB">TUB-TUBES</option>
+											<option value="UGS">UGS-US GALLONS</option>										
+											<option value="VLS">VLS-Vials</option>
+											
+                                        </select><br><br>
+                                        <div id="txtEditCustomUnit" class="hidden"><strong >Custom Unit: </strong> <input id="txtEditCustom" type="text" class="form-control pull-right" placeholder="" /></div><br>
+                                        <div id="lblEditRate"><strong >Rate: </strong> <input type="number" class="form-control pull-right" id="txtEditRate" placeholder="" /></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSubmitChanges" class="btn btn-primary" >Submit Changes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--/template-->
+	<!-- script references -->
+
+<script type="text/javascript" src="js/apiNames.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dataTables.select.min.js"></script>
+<script src="js/product.js"></script>
+
+		
+	</body>
+</html>

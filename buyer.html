@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Buyer | SAR INVOICE</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/fontawesome-4.3.0.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" href="css/select.dataTables.min.css" />
+		<script src="js/jquery.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/side.css" rel="stylesheet">
+	</head>
+	<body>
+<!--template-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" style="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" style="font-size:16px" href="#">SAR INVOICE
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        <li><a href="bill.html">Product Bill</a></li>
+			          <li><a href="servicebill.html">Service Bill</a></li>
+			        </ul>
+			    </li>
+                <li ><a href="product.html" class="" style="">Add Product</a>
+                </li>
+                <li class="active"><a href="#" class="">Add Buyer</a>
+                </li> 				
+				<li><a href="service.html" class="">Add Service</a>
+                </li> 
+               
+            </ul>
+
+	
+	<div class="input-group" id="adv-search" style="
+    margin-top: 5px; margin-bottom:5px;" >
+                <input type="number" class="form-control input-md" id="headerSearchInvoiceNum" placeholder="Enter Invoice Number ... " style="float:none" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchStartDate" placeholder="fff" style="float:none;width:50%" />
+				<input type="date" class="form-control input-md hidden" id="headerSearchEndDate" style="float:none;width:50%" />
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchStartDate" class="hidden">Start Date</label>
+				<label style="float:none;width:50%;color:white" id="lblHeaderSearchEndDate" class="hidden">End Date</label>
+                <div class="input-group-btn" >
+                    <div class="btn-group" role="group" id="drpCriteria">
+                        <div class="dropdown dropdown-md">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Criteria<span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form" style="padding:3px">
+                                   <div >                                    
+                                        <select class="form-control" id="criteria">
+                                            <option value="num" selected>Invoice Number</option>
+											 <!-- <option value="date" >Invoice Date</option> -->
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary center" id="btnCriteria"><span class="fa fa-chevron-circle-right" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><a type="button" href="user.html" id="btnUser" class="btn btn-success" aria-expanded="false"><span class="fa fa-user"></span> User</a></div>
+				&nbsp;&nbsp;
+				<div class="input-group-btn"><button type="button" id="btnLogout" class="btn btn-danger" aria-expanded="false"><span class="fa fa-user"></span> Logout</button></div>
+				
+            </div>
+
+			
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container" id="contentDiv">
+    <div class="col-md-12">
+        <div class="center-block text-center">
+            <h1>BUYERS</h1>
+        </div>
+        <!--/container-->
+    </div>
+	<div class="row">
+	<div class="col-md-5"></div>
+	</div>
+	<div class="row">
+	<div class="col-md-5">
+	<h3 style="text-align:center">Add Your Buyer</h3>
+	<div class="panel panel-default height">
+                        <div class="panel-heading">Buyer Details:-</div>
+                        <div class="panel-body">
+                            <strong>Buyer Name: </strong> <input type="text" class="form-control pull-right" id="txtName" placeholder="" /><br><br>
+                             <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtAlias" placeholder="" /><br><br>
+							<label><strong>Address: </strong></label> <input type="textarea" class="form-control pull-right" id="txtAddress" /><br><br>
+                            <label id="lblGstin"><strong>GSTIN:<br><span id="tip" style="font-size:10px"><a href="https://services.gst.gov.in/services/track-provisional-id-status" target="_blank" style="text-decoration:none">(Find your buyer's Gstin)</a> </span></strong></label> <input type="text" maxlength="15" class="form-control pull-right" id="txtGstin" /><br><br>
+							<strong>State: </strong> <select class="form-control pull-right" id="state">
+											<option value="35">Andaman and Nicobar Islands</option>
+											<option value="28">Andhra Pradesh</option>
+											<option value="37">Andhra Pradesh (New)</option>
+											<option value="12">Arunachal Pradesh</option>
+											<option value="18">Assam</option>
+											<option value="10">Bihar</option>
+											<option value="04">Chandigarh</option>
+											<option value="22">Chhattisgarh</option>
+											<option value="26">Dadra and Nagar Haveli</option>
+											<option value="25">Daman and Diu</option>
+											<option value="07">Delhi</option>
+											<option value="30">Goa</option>
+											<option value="24">Gujarat</option>
+											<option value="06">Haryana</option>
+											<option value="02">Himachal Pradesh</option>
+											<option value="01">Jammu and Kashmir</option>
+											<option value="20">Jharkhand</option>
+											<option value="29">Karnataka</option>
+											<option value="32">Kerala</option>
+											<option value="31">Lakshadweep Islands</option>
+											<option value="23">Madhya Pradesh</option>
+											<option value="27">Maharashtra</option>
+											<option value="14">Manipur</option>
+											<option value="17">Meghalaya</option>
+											<option value="15">Mizoram</option>
+											<option value="13">Nagaland</option>
+											<option value="21">Odisha</option>
+											<option value="34">Pondicherry</option>
+											<option value="03">Punjab</option>
+											<option value="08">Rajasthan</option>
+											<option value="11">Sikkim</option>
+											<option value="33">Tamil Nadu</option>
+											<option value="36">Telangana</option>
+											<option value="16">Tripura</option>
+											<option value="09">Uttar Pradesh</option>
+											<option value="05">Uttarakhand</option>
+											<option value="19">West Bengal</option>
+											</select>
+											<br><br>
+							<strong>Email: </strong> <input type="email" class="form-control pull-right" id="txtEmail" /><br><br>							
+							<strong>Phone: </strong> <input type="number"  min="0" max="9999999999" oninput="validity.valid||(value='');" class="form-control pull-right" id="txtPhone" /><br><br>
+							
+                        </div>
+						
+						<input type="button" class="btn btn-success col-md-offset-5 col-md-2" id="btnBuyerAdd" name="Add" value="Add"><br><br>
+                    </div>
+		</div>
+	<div class="col-md-7">
+	<h3 style="text-align:center">Your Buyers</h3>
+	<input type="button" class="btn btn-success btn-md col-md-offset-2 col-md-4" id="btnEdit" name="Edit Selected Buyer" value="Edit Selected Buyer">
+	<input type="button" class="btn btn-danger btn-md col-md-offset-1 col-md-4" id="btnDelete" name="Delete Selected Buyer" value="Delete Selected Buyer"><br><br>
+	<table class="display table-responsive" id="myTable" style="border:outset" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Buyer Name</th>
+        <th>Address</th>
+        <th>GSTIN</th>
+		<th>State</th>
+		<th>E-mail</th>
+		<th>Phone</th>
+		<th>BuyerID</th>
+		<th>Alias</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+	</div>
+	
+			
+</div>
+<br><br>
+
+
+</div>
+
+
+<!-- Modal -->
+<div id="editModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Details</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Buyer Name: </strong> <input type="text" class="form-control pull-right" id="txtEditName" placeholder="" /><br><br>
+         <strong>Alias: </strong> <input type="text" class="form-control pull-right" id="txtEditAlias" placeholder="" /><br><br>
+							<label><strong>Address: </strong></label> <input type="textarea" class="form-control pull-right" id="txtEditAddress" /><br><br>
+                            <label id="lblGstin"><strong>GSTIN:<br><span id="tip" class="hidden" style="font-size:10px"><a href="https://services.gst.gov.in/services/track-provisional-id-status" target="_blank" style="text-decoration:none">(Find you Gstin)</a> </span></strong></label> <input type="text" maxlength="15" class="form-control pull-right" id="txtEditGstin" /><br><br>
+							<strong>State: </strong> <select class="form-control pull-right" id="editState">
+											<option value="35">Andaman and Nicobar Islands</option>
+											<option value="28">Andhra Pradesh</option>
+											<option value="37">Andhra Pradesh (New)</option>
+											<option value="12">Arunachal Pradesh</option>
+											<option value="18">Assam</option>
+											<option value="10">Bihar</option>
+											<option value="04">Chandigarh</option>
+											<option value="22">Chhattisgarh</option>
+											<option value="26">Dadra and Nagar Haveli</option>
+											<option value="25">Daman and Diu</option>
+											<option value="07">Delhi</option>
+											<option value="30">Goa</option>
+											<option value="24">Gujarat</option>
+											<option value="06">Haryana</option>
+											<option value="02">Himachal Pradesh</option>
+											<option value="01">Jammu and Kashmir</option>
+											<option value="20">Jharkhand</option>
+											<option value="29">Karnataka</option>
+											<option value="32">Kerala</option>
+											<option value="31">Lakshadweep Islands</option>
+											<option value="23">Madhya Pradesh</option>
+											<option value="27">Maharashtra</option>
+											<option value="14">Manipur</option>
+											<option value="17">Meghalaya</option>
+											<option value="15">Mizoram</option>
+											<option value="13">Nagaland</option>
+											<option value="21">Odisha</option>
+											<option value="34">Pondicherry</option>
+											<option value="03">Punjab</option>
+											<option value="08">Rajasthan</option>
+											<option value="11">Sikkim</option>
+											<option value="33">Tamil Nadu</option>
+											<option value="36">Telangana</option>
+											<option value="16">Tripura</option>
+											<option value="09">Uttar Pradesh</option>
+											<option value="05">Uttarakhand</option>
+											<option value="19">West Bengal</option>
+											</select>
+											<br><br>
+							<strong>Email: </strong> <input type="email" class="form-control pull-right" id="txtEditEmail" /><br><br>							
+							<strong>Phone: </strong> <input type="number" min="0" max="9999999999" oninput="validity.valid||(value='');" class="form-control pull-right" id="txtEditPhone" /><br><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSubmitChanges" class="btn btn-primary" >Submit Changes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!--/template-->
+	<!-- script references -->
+<script type="text/javascript" src="js/apiNames.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dataTables.select.min.js"></script>
+<script src="js/buyer.js"></script>
+</body>
+</html>
