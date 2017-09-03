@@ -136,37 +136,38 @@ $(document).ready(function() {
 		
 	$('#btnProductFind').click( function (event) 
 	 {
-		var strPName = $("#txtProductName").val();
-		productDetails.forEach(function(element) {
-			if(element["name"].toUpperCase() == strPName)
-			{
-				$("#txtRate").val(element["rate"]);
-				if(localStorage.getItem("sellerStateCode") == $("#txtStateCode").val())
+	 	if($("#txtBName").val() == ""){
+	 		alert("Please add buyer first.")
+	 	}
+	 	else{
+	 		var strPName = $("#txtProductName").val();
+			productDetails.forEach(function(element) {
+				if(element["name"].toUpperCase() == strPName)
 				{
-					$("#txtCgst").val(element["cgst"]);
-					$("#txtSgst").val(element["sgst"]);
-					$(".igst").hide();
-					$(".igstAmount").hide();
-				}
-				else
+					$("#txtRate").val(element["rate"]);
+					if(localStorage.getItem("sellerStateCode") == $("#txtStateCode").val())
 					{
-					$(".cgst").hide();
-					$(".sgst").hide();
-					$(".cgstAmount").hide();
-					$(".sgstAmount").hide();
-					$("#txtIgst").val(element["igst"]);				
+						$("#txtCgst").val(element["cgst"]);
+						$("#txtSgst").val(element["sgst"]);
+						$(".igst").hide();
+						$(".igstAmount").hide();
 					}
-				$("#id-1 #txtPName").val(strPName);
-				$("#txtHSNCode").val(element["code"]);
-				$("#txtUnit").val(element["unit"]);	
-				$("#txtProductId").val(element["productid"]);				
-			}
-		});
+					else
+						{
+						$(".cgst").hide();
+						$(".sgst").hide();
+						$(".cgstAmount").hide();
+						$(".sgstAmount").hide();
+						$("#txtIgst").val(element["igst"]);				
+						}
+					$("#id-1 #txtPName").val(strPName);
+					$("#txtHSNCode").val(element["code"]);
+					$("#txtUnit").val(element["unit"]);	
+					$("#txtProductId").val(element["productid"]);				
+				}
+			});
+	 	}		
     });
-	
-/*	$('#btnProductPriceShow').click( function (event){
-		productPriceShow();
-	});*/
 
 	$("#txtRate").focusout(function(){
 		productPriceShow();
@@ -184,8 +185,8 @@ $(document).ready(function() {
 	$('#btnBillAdd').click( function (e){
 		if($("#txtBName").val() == "")
 			alert("Buyer Cannot Be Empty !");
-		else if($("#txtPName").val()=="")
-			alert("Product Cannot Be Empty !");
+		else if($("#txtPName").val()=="" || $("#txtPName").val()=="0")
+			alert("No product to add !");
 		else
 		{
 			productPriceShow();
@@ -255,8 +256,8 @@ $(document).ready(function() {
 	$('#btnBillServiceAdd').click( function (e){		
 		if($("#txtBName").val() == "")
 			alert("Buyer Cannot Be Empty !");
-		else if($("#txtPName").val()=="")
-			alert("Product Cannot Be Empty !");
+		else if($("#txtPName").val()=="" || $("#txtPName").val()=="0")
+			alert("No service to add !");
 		else
 		{
 			servicePriceShow();
@@ -446,8 +447,11 @@ $(document).ready(function() {
             	$tds.eq(0).text(i);
     		});
 		 setTimeout(function(){
-		 	removeByAttr(billDetails, 'productid', $('#txtProductId').val());
-		 },200)
+		 	removeByAttr(billDetails, 'sno', index.toString());
+		 	billDetails.forEach(function(product,index){
+		 		product.sno = (index+1).toString();
+		 	})
+		 },100)
 		
 		}
 	})
@@ -474,33 +478,35 @@ $(document).ready(function() {
 		if(tableservice.row(".selected")["0"]["length"] == "0")
 			alert("please select a service !");
 		else{
-		var index = parseInt(tableservice.row('.selected').index()) + parseInt('1');
-		$("#txtPName").val(tableservice.row('.selected').data()[0]);
-		$("#txtHSNCode").val(tableservice.row('.selected').data()[1]);
-		$("#txtAmount").val(tableservice.row('.selected').data()[2]);
-		$("#txtDiscount").val(tableservice.row('.selected').data()[3]);
-		$("#txtFinalAmount").val(tableservice.row('.selected').data()[4]);
+			var index = parseInt(tableservice.row('.selected').index()) + parseInt('1');
+			$("#txtPName").val(tableservice.row('.selected').data()[0]);
+			$("#txtHSNCode").val(tableservice.row('.selected').data()[1]);
+			$("#txtAmount").val(tableservice.row('.selected').data()[2]);
+			$("#txtDiscount").val(tableservice.row('.selected').data()[3]);
+			$("#txtFinalAmount").val(tableservice.row('.selected').data()[4]);
 
-		$("#txtCgst").val(tableservice.row('.selected').data()[5]);
-		$("#txtSgst").val(tableservice.row('.selected').data()[6]);
-		$("#txtIgst").val(tableservice.row('.selected').data()[7]);
-		$("#txtTax").val(tableservice.row('.selected').data()[8]);
-		$("#txtCgstAmount").val(tableservice.row('.selected').data()[9]);
-		$("#txtSgstAmount").val(tableservice.row('.selected').data()[10]);
-		$("#txtIgstAmount").val(tableservice.row('.selected').data()[11]);
-		$("#txtProductId").val(tableservice.row('.selected').data()[12]);
-		tableservice.row('.selected').remove().draw( false );
-		$(".invoiceTable tr").find("td:first:contains('"+index+"')").closest('tr').remove();
-		counter--;
-		 $(".invoiceTable").find('tr').each(function (i, el) {
-        	var $tds = $(this).find('td');
-        	if($tds.eq(0).text() != "Total")
-            	$tds.eq(0).text(i);
-    		});
-		 setTimeout(function(){
-		 	removeByAttr(billDetails, 'productname', $('#txtPName').val());
-		 },200)
-		//billDetails.splice(billDetails.indexOf($('#txtHSNCode').val()),1);
+			$("#txtCgst").val(tableservice.row('.selected').data()[5]);
+			$("#txtSgst").val(tableservice.row('.selected').data()[6]);
+			$("#txtIgst").val(tableservice.row('.selected').data()[7]);
+			$("#txtTax").val(tableservice.row('.selected').data()[8]);
+			$("#txtCgstAmount").val(tableservice.row('.selected').data()[9]);
+			$("#txtSgstAmount").val(tableservice.row('.selected').data()[10]);
+			$("#txtIgstAmount").val(tableservice.row('.selected').data()[11]);
+			$("#txtProductId").val(tableservice.row('.selected').data()[12]);
+			tableservice.row('.selected').remove().draw( false );
+			$(".invoiceTable tr").find("td:first:contains('"+index+"')").closest('tr').remove();
+			counter--;
+			 $(".invoiceTable").find('tr').each(function (i, el) {
+	        	var $tds = $(this).find('td');
+	        	if($tds.eq(0).text() != "Total")
+	            	$tds.eq(0).text(i);
+	    		});
+			setTimeout(function(){
+			removeByAttr(billDetails, 'sno', index.toString());
+			billDetails.forEach(function(product,index){
+			 		product.sno = (index+1).toString();
+			 	})
+			},100)
 		}
 	})
 
@@ -1373,11 +1379,11 @@ function multipleBillGeneration(margin){
 	}
 	if(z>=1){
 		if(parseInt(rowcount)>13){ //13 is the limit for next apge 26 is limit
+			var secondDivTotal = 0.0;
 			$("#secondDiv").html(newPage);
 			$("#secondDiv #invoiceMain").css("margin-top",margin)
 			var i=0;
 			while(rowcount>0){
-				console.log($('#secondDiv #invoiceTable tbody tr').eq(i).html())
 				$('#secondDiv #invoiceTable tbody tr').eq(i).remove();
 				rowcount--;			
 			}
@@ -1386,21 +1392,41 @@ function multipleBillGeneration(margin){
 				rowcount = 26;
 			for(var i=13;i<rowcount;i++){
 				var row = $("#divInvoice #invoiceTable tbody tr").eq(i).html(); //this returns innerhtml so tds
-				console.log(row);
+				console.log($(row).eq(15).html());
+				secondDivTotal += parseFloat($(row).eq(15).html());
 				$("#secondDiv #invoiceTable tbody tr:last").before("<tr style='height:25px'>"+row+"</tr>");				
 			}
-			// /rowcount = counter -1;
 			i=13;
+			var newFinalAmount = parseFloat($("#divInvoice #totalAmount").html());
+			var summary = $("#divInvoice #summary").html();
+			var allDetails = $("#divInvoice #allDetails").html();
+			var amtInWords = $("#divInvoice #amtInWords").html();
 			if(z!=2){
 				while(rowcount>13){
 					$('#divInvoice #invoiceTable tbody tr').eq(i).remove();		
 					rowcount --;	
 				}
+				console.log(newFinalAmount)
+				var divOneTotal = parseFloat($("#divInvoice #totalAmount").html()) - parseFloat(Math.round(secondDivTotal));
+				$("#divInvoice #totalAmount").html(divOneTotal);
+				$("#divInvoice #amtInWords").html("");
+				$("#divInvoice #summary").html("Bill Continued...");
+				$("#divInvoice #allDetails").html("Bill Continued...");
+				$("#secondDiv #totalAmount").html(newFinalAmount);
+				$("#secondDiv #amtInWords").html(amtInWords);
+				$("#secondDiv #allDetails").html(allDetails);
+				$("#secondDiv #summary").html(summary);
+			}
+			else{
+				//$("#secondDiv #invoiceTable tbody #totalAmount").html(Math.round(secondDivTotal).toFixed(2))
+				$("#divInvoice #summary").html("Bill Continued...");
+				$("#divInvoice #allDetails").html("Bill Continued...");
 			}									
 		}
 	}
 	rowcount = counter - 1;
 	if(z==2){
+		var thirdDivTotal = 0.0;
 		if(parseInt(rowcount)>26){ //26 is the limit for next apge 26 is limit
 			$("#thirdDiv").html(newPage);
 			$("#thirdDiv #invoiceMain").css("margin-top",margin)
@@ -1413,7 +1439,8 @@ function multipleBillGeneration(margin){
 			rowcount = counter -1;
 			for(var i=26;i<rowcount;i++){
 				var row = $("#divInvoice #invoiceTable tbody tr").eq(i).html(); //this returns innerhtml so tds
-				console.log(row);
+				console.log($(row).eq(15).html());
+				thirdDivTotal += parseFloat($(row).eq(15).html());
 				$("#thirdDiv #invoiceTable tbody tr:last").before("<tr style='height:25px'>"+row+"</tr>");				
 			}
 			rowcount = counter -1;
@@ -1421,7 +1448,19 @@ function multipleBillGeneration(margin){
 			while(rowcount>13){
 				$('#divInvoice #invoiceTable tbody tr').eq(i).remove();		
 				rowcount --;	
-			}								
+			}
+			console.log(newFinalAmount)
+			divOneTotal = parseFloat($("#divInvoice #totalAmount").html()) - parseFloat(Math.round(secondDivTotal)) - parseFloat(Math.round(thirdDivTotal));
+			$("#divInvoice #totalAmount").html(divOneTotal);
+			$("#divInvoice #amtInWords").html("");
+			$("#secondDiv #invoiceTable tbody #totalAmount").html(Math.round(secondDivTotal).toFixed(2))
+			$("#secondDiv amtInWords").html("");
+			$("#divInvoice #summary").html("Bill Continued...");
+			$("#divInvoice #allDetails").html("Bill Continued...");
+			$("#thirdDiv #totalAmount").html(newFinalAmount);
+			$("#thirdDiv #allDetails").html(allDetails);
+			$("#thirdDiv #summary").html(summary);
+			$("#thirdDiv #amtInWords").html(amtInWords);								
 		}
 	}
 	rowcount = counter -1;
@@ -1432,10 +1471,16 @@ function multipleBillGeneration(margin){
 	else{
 		document.body.innerHTML=$('#divInvoice').html();
 		$("#mainBody").css("margin-top","-20px");
+		/*$("#duplicatePage").html(newPage);
+		$("#duplicatePage #lblBillType").html("DUPLICATE");
+		$("#duplicatePage #invoiceMain").css("margin-top","100px")
+		$("#triplicatePage").html(newPage);
+		$("#triplicatePage #lblBillType").html("TRIPLICATE");
+		$("#triplicatePage #invoiceMain").css("margin-top","100px")*/
 		window.print();
-		$("#lblBillType").text("DUPLICATE");
+		$("#divInvoice #lblBillType").text("DUPLICATE");
 		window.print();
-		$("#lblBillType").text("TRIPLICATE");
+		$("#divInvoice #lblBillType").text("TRIPLICATE");
 		window.print();
 		window.location.reload();
 	}
