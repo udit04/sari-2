@@ -584,10 +584,11 @@ $(document).ready(function() {
 
 	$("#btnBillPrint").click(function(){
 		$("#invoiceByCriteria").removeClass("hidden")
-		document.body.innerHTML=document.getElementById('divInvoice').innerHTML;
-		$("#mainBody").css("margin-top","-20px");
-		window.print();
-		window.location.reload();
+		counter = 0;
+		$(".invoiceTable").find('tbody tr').each(function (i, el) {
+        	++counter;
+    		});
+		multipleBillGeneration("80px");
 	})
 
 	$("#btnProductBillEdit").click(function(){
